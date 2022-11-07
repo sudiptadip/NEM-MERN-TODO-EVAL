@@ -1,5 +1,6 @@
 const express = require('express')
 const { connection } = require('./config/db')
+const { loginRouter } = require('./router/login.router')
 const { signupRouter } = require('./router/signup.router')
 require('dotenv').config()
 const app = express()
@@ -12,8 +13,7 @@ app.get('/',(req,res)=>{
 
 app.use('/signup',signupRouter)
 
-
-
+app.use('/login',loginRouter)
 
 
 app.listen(PORT,async()=>{
