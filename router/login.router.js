@@ -5,19 +5,7 @@ const { Signup } = require('../module/signup.module')
  require('dotenv').config()
  const loginRouter = Router()
 
-const autentication = (req,res,next) => {
-    if(!req.headers.token){
-        return res.send({msg: "please login"})
-    }
-    const token = req.headers.token.split(' ')[1]
-    jwt.verify(token, process.env.SECRET_KEY, (err,decode) => {
-        if(err){
-            res.send({msg: "please login"})
-        }else{
-            req.body.userId = decode.userId
-        }
-    })
-}
+
 
 
 loginRouter.post('/',async(req,res)=>{

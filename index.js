@@ -2,6 +2,7 @@ const express = require('express')
 const { connection } = require('./config/db')
 const { loginRouter } = require('./router/login.router')
 const { signupRouter } = require('./router/signup.router')
+const { TodoRoter } = require('./router/todo.router')
 require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 6000
@@ -14,6 +15,8 @@ app.get('/',(req,res)=>{
 app.use('/signup',signupRouter)
 
 app.use('/login',loginRouter)
+
+app.use('/todo',TodoRoter)
 
 
 app.listen(PORT,async()=>{
