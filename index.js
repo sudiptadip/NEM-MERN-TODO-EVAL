@@ -1,5 +1,6 @@
 const express = require('express')
 const { connection } = require('./config/db')
+var cors = require('cors')
 const { loginRouter } = require('./router/login.router')
 const { signupRouter } = require('./router/signup.router')
 const { TodoRoter } = require('./router/todo.router')
@@ -7,6 +8,7 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 6000
 app.use(express.json())
+app.use(cors())
 
 app.get('/',(req,res)=>{
     res.send({msg: 'Home page'})
