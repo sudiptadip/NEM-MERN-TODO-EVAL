@@ -23,10 +23,25 @@ TodoRoter.post('/create', autentication, async (req,res)=>{
     }    
 })
 
-TodoRoter.patch("/edit/:id",(req,res)=>{
+TodoRoter.patch("/edit/:id",autentication,async(req,res)=>{
     const {id} = req.params
-    
+    try{
+        const editdata = await Todo.findOneAndUpdate({_id: id},req.body)
+        res.send('update successfully')
+    }catch(er){
+        res.send('update faild')
+    }
 })
 
+TodoRoter.delete("/delete/:id", autentication, async(req,res)=>{
+    const {id} = req.params
+    console.log(id)
+    try{
+        const editdata = await Todo.deleteOne({_id: id})
+        res.send('delete successfully')
+    }catch(er){
+        res.send('delete faild')
+    }
+})
 
 module.exports = {TodoRoter}
